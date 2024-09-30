@@ -1,0 +1,45 @@
+/* Estilo general de la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f7f7f7;
+}
+
+/* Estilo para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para la cabecera de la tabla */
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Colorea las filas impares de manera diferente */
+tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para las celdas */
+td {
+    text-align: center;
+}
+
+/* Estilo para el título de la página */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}

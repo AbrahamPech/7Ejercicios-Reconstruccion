@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7 - Resumen de Calificaciones</title>
+    <link rel="stylesheet" href="css/Ejercicio7.css"> <!-- Enlace al archivo CSS -->
+</head>
+<body>
+    <h1>Resumen de Calificaciones</h1>
+    <table id="calificacionesTabla">
+        <thead>
+            <tr>
+                <th>Promedio más alto</th>
+                <th>Promedio más bajo</th>
+                <th>Total de parciales reprobados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="maxPromedio"></td>
+                <td id="minPromedio"></td>
+                <td id="totalReprobados"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Promedios por Alumno</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Promedio</th>
+                <th>Parciales Reprobados</th> <!-- Nueva columna para reprobados -->
+            </tr>
+        </thead>
+        <tbody id="promediosAlumnos">
+            <!-- Los promedios de cada alumno se llenarán aquí -->
+        </tbody>
+    </table>
+
+    <h2>Distribución de Calificaciones</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rango de Promedios</th>
+                <th>Número de Alumnos</th>
+            </tr>
+        </thead>
+        <tbody id="distribucionCalificaciones">
+            <!-- La distribución se llenará aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        // Mostrar resultados automáticamente al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultados = resumenCalificaciones();
+
+            // Asignar los resultados de los promedios y reprobados a la tabla
+            document.getElementById('maxPromedio').textContent = resultados.maxPromedio;
+            document.getElementById('minPromedio').textContent = resultados.minPromedio;
+            document.getElementById('totalReprobados').textContent = resultados.totalReprobados;
+
+            // Asignar los promedios de cada alumno
+            const promediosTable = document.getElementById('promediosAlumnos');
+            resultados.promedios.forEach((promedio, index) => {
+                const row = document.createElement('tr');
+                const alumnoCell = document.createElement('td');
+                const promedioCell = document.createElement('td');
+                const reprobadosCell = document.createElement('td');
+
+                // Calcular parciales reprobados por alumno
+                const reprobadosCount = resultados.reprobadosPorAlumno[index];
+
+                alumnoCell.textContent = `Alumno ${index + 1}`;
+                promedioCell.textContent = promedio;
+                reprobadosCell.textContent = reprobadosCount; // Mostrar el número de reprobados
+
+                row.appendChild(alumnoCell);
+                row.appendChild(promedioCell);
+                row.appendChild(reprobadosCell); // Añadir la celda de reprobados
+                promediosTable.appendChild(row);
+            });
+
+            // Asignar distribución de calificaciones
+            const distribucionTable = document.getElementById('distribucionCalificaciones');
+            for (const [rango, count] of Object.entries(resultados.distribucion)) {
+                const row = document.createElement('tr');
+                const rangoCell = document.createElement('td');
+                const countCell = document.createElement('td');
+
+                rangoCell.textContent = rango;
+                countCell.textContent = count;
+
+                row.appendChild(rangoCell);
+                row.appendChild(countCell);
+                distribucionTable.appendChild(row);
+            }
+        });
+    </script>
+    <script src="js/Ejercicio7.js"></script>
+</body>
+</html>
